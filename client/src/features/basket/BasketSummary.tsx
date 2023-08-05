@@ -1,14 +1,14 @@
-import { TableContainer, Paper, Table, TableBody, TableRow, TableCell, Typography } from "@mui/material";
-import React from "react";
-import { useStoreContext } from "../../app/context/StoreContext";
+import { TableContainer, Paper, Table, TableBody, TableRow, TableCell } from "@mui/material";
+import { useAppSelector } from "../../app/store/configureStore";
 import { currencyFormat } from "../../app/util/util";
-export default function BasketSummary() {
-    const {basket}=useStoreContext();
-    const subtotal = (basket && basket.items)
-  ? basket.items.map((item) => item.quantity * item.price).reduce((sum, price) => sum + price, 0)
-  : 0;
+import React from 'react';
 
-    const deliveryFee = subtotal >10000 ? 0 : 500 ;
+export default function BasketSummary() {
+    const { basket } = useAppSelector(state => state.basket);
+    const subtotal = (basket && Array.isArray(basket.items))
+    ? basket.items.reduce((sum, item) => sum + (item.quantity * item.price), 0)
+    : 0;  
+    const deliveryFee = subtotal > 10000 ? 0 : 500;
 
     return (
         <>
@@ -29,7 +29,7 @@ export default function BasketSummary() {
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <span style={{fontStyle: 'italic'}}>*Orders over $100 qualify for free delivery</span>
+                                <span style={{ fontStyle: 'italic' }}>*Orders over $100 qualify for free delivery</span>
                             </TableCell>
                         </TableRow>
                     </TableBody>
