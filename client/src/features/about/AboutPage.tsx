@@ -5,8 +5,8 @@ export default function AboutPage(){
   const [validationErrors,setValidationErrors]=useState<string[]>([]);
 
   function getValidationError(){
-    agent.TestErrors.getValidationError().
-    then(()=> console.log('should not see this'))
+    agent.TestErrors.getValidationError()
+    .then(()=> console.log('should not see this'))
     .catch(error=>setValidationErrors(error));
   }
     return(
