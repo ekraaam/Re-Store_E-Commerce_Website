@@ -5,7 +5,6 @@ import { Product } from "../../app/models/product";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { currencyFormat } from "../../app/util/util";
 import { addBasketItemAsync } from "../basket/basketSlice";
-import React from 'react';
 
 interface Props {
     product: Product;
