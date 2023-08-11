@@ -1,3 +1,5 @@
+using System.Reflection.Metadata;
+using System;
 using System.Collections.Immutable;
 using System.Text;
 using API.Data;
@@ -73,6 +75,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         });
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<TokenService>();
+builder.Services.AddScoped<PaymentService>();
 
 var app = builder.Build();
 
